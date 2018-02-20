@@ -25,7 +25,7 @@ public class PropostaEntity implements Proposta {
     /**
      * @deprecated frameworks only
      */
-    @Deprecated
+    @Deprecated(since = "1.0.0")
     private PropostaEntity() { }
 
     public PropostaEntity(List<CursoEntity> cursos, ClienteEntity cliente, Period periodo) {

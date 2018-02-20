@@ -20,7 +20,7 @@ public class ClienteEntity implements Cliente {
     /**
      * @deprecated frameworks only
      */
-    @Deprecated
+    @Deprecated(since = "1.0.0")
     private ClienteEntity() { }
 
     public ClienteEntity(String nomeFantasia, String razaoSocial, String cnpj) {

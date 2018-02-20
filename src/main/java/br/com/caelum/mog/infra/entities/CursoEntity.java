@@ -22,7 +22,7 @@ public class CursoEntity implements Curso {
     /**
      * @deprecated frameworks only
      */
-    @Deprecated
+    @Deprecated(since = "1.0.0")
     private CursoEntity() {}
 
     public CursoEntity(String nome, BigDecimal valor, Duration cargaHoraria) {
