@@ -2,7 +2,6 @@ package br.com.caelum.mog.infra.daos;
 
 import br.com.caelum.mog.domain.models.Cliente;
 import br.com.caelum.mog.domain.repositories.ClienteRepository;
-import br.com.caelum.mog.infra.entities.ClienteEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class ClienteDaoTest {
 
     @Test
     public void deveSerPossivelRetornarUmClienteAtravesDoId(){
-        Long id = manager.persistAndGetId(new ClienteEntity("CDC", "Casa do Código", "11.111.111/1111-11"), Long.class);
+        Long id = manager.persistAndGetId(new Cliente("CDC", "Casa do Código", "11.111.111/1111-11"), Long.class);
 
         assertThat(clienteRepository.findById(id), is(optionalWithValue(pojo(Cliente.class)
                                                         .where(Cliente::getId, is(equalTo(id)))

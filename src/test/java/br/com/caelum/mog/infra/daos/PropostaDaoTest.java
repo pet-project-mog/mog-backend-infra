@@ -1,10 +1,9 @@
 package br.com.caelum.mog.infra.daos;
 
+import br.com.caelum.mog.domain.models.Cliente;
+import br.com.caelum.mog.domain.models.Curso;
 import br.com.caelum.mog.domain.models.Proposta;
 import br.com.caelum.mog.domain.repositories.PropostaRepository;
-import br.com.caelum.mog.infra.entities.ClienteEntity;
-import br.com.caelum.mog.infra.entities.CursoEntity;
-import br.com.caelum.mog.infra.entities.PropostaEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +41,16 @@ public class PropostaDaoTest {
     @Test
     public void deveSerPossivelRetornarUmaPropostaAtravesDoId(){
 
-        CursoEntity fj11 = new CursoEntity("FJ 11 - Java e Orientação a Objetos", new BigDecimal("2290"), Duration.ofHours(40));
-        CursoEntity fj21 = new CursoEntity("FJ 21 - Java Para Desenvolvimento Web", new BigDecimal("2290"), Duration.ofHours(40));
-        ClienteEntity cdc = new ClienteEntity("CDC", "Casa do Código", "11.111.111/1111-11");
+        Curso fj11 = new Curso("FJ 11 - Java e Orientação a Objetos", new BigDecimal("2290"), Duration.ofHours(40));
+        Curso fj21 = new Curso("FJ 21 - Java Para Desenvolvimento Web", new BigDecimal("2290"), Duration.ofHours(40));
+        Cliente cdc = new Cliente("CDC", "Casa do Código", "11.111.111/1111-11");
 
 
         manager.persist(fj11);
         manager.persist(fj21);
         manager.persist(cdc);
 
-        Long id = manager.persistAndGetId(new PropostaEntity(List.of(fj11, fj21), cdc, Period.ofWeeks(2)), Long.class);
+        Long id = manager.persistAndGetId(new Proposta(cdc, Period.ofWeeks(2), fj11, fj21), Long.class);
 
 
         assertThat(propostaRepository.findById(id), is(optionalWithValue(pojo(Proposta.class)

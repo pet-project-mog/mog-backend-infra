@@ -2,7 +2,6 @@ package br.com.caelum.mog.infra.daos;
 
 import br.com.caelum.mog.domain.models.Curso;
 import br.com.caelum.mog.domain.repositories.CursoRepository;
-import br.com.caelum.mog.infra.entities.CursoEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class CursoDaoTest {
 
     @Test
     public void deveSerPossivelRetornarUmCursoAtravesDoId(){
-        Long id = manager.persistAndGetId(new CursoEntity("FJ 11 - Java e Orientação a Objetos", new BigDecimal("2290"), Duration.ofHours(40)), Long.class);
+        Long id = manager.persistAndGetId(new Curso("FJ 11 - Java e Orientação a Objetos", new BigDecimal("2290"), Duration.ofHours(40)), Long.class);
 
 
         assertThat(cursoRepository.findById(id), is(optionalWithValue(pojo(Curso.class)
