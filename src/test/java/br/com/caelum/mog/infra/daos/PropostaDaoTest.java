@@ -22,8 +22,7 @@ import java.util.List;
 import static com.spotify.hamcrest.optional.OptionalMatchers.emptyOptional;
 import static com.spotify.hamcrest.optional.OptionalMatchers.optionalWithValue;
 import static com.spotify.hamcrest.pojo.IsPojo.pojo;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 @SpringBootTest
@@ -52,12 +51,11 @@ public class PropostaDaoTest {
         manager.persist(fj21);
         manager.persist(cdc);
 
-        propostaRepository.save(new PropostaEntity(List.of(fj11, fj21), cdc, Period.ofWeeks(2)));
+        Long id = manager.persistAndGetId(new PropostaEntity(List.of(fj11, fj21), cdc, Period.ofWeeks(2)), Long.class);
 
 
-
-        assertThat(propostaRepository.findById(1L), is(optionalWithValue(pojo(Proposta.class)
-                                                            .where(Proposta::getId, is(1L))
+        assertThat(propostaRepository.findById(id), is(optionalWithValue(pojo(Proposta.class)
+                                                            .where(Proposta::getId, is(equalTo(id)))
                                                             .where(Proposta::getCursos, contains(fj11, fj21))
                                                             .where(Proposta::getPeriodo, is(Period.ofWeeks(2)))
                                                             .where(Proposta::getCliente, is(cdc))
@@ -67,6 +65,6 @@ public class PropostaDaoTest {
 
 
     public void deveSerRetornadoUmOptionalVazioQuandoOIdNaoExistir(){
-        assertThat(propostaRepository.findById(1L), is(emptyOptional()));
+        assertThat(propostaRepository.findById(500L), is(emptyOptional()));
     }
 }
