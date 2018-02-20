@@ -2,12 +2,10 @@ package br.com.caelum.mog.infra.entities;
 
 import br.com.caelum.mog.domain.models.Cliente;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "clientes")
 public class ClienteEntity implements Cliente {
 
     @Id

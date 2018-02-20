@@ -2,14 +2,12 @@ package br.com.caelum.mog.infra.entities;
 
 import br.com.caelum.mog.domain.models.Curso;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Duration;
 
 @Entity
+@Table(name = "cursos")
 public class CursoEntity implements Curso {
 
     @Id
