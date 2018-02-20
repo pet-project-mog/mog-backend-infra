@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Optional;
@@ -23,6 +24,7 @@ import static org.junit.Assert.assertThat;
 @SpringBootTest
 @DataJpaTest
 @RunWith(SpringRunner.class)
+@Transactional
 public class CursoDaoTest {
 
     @Autowired

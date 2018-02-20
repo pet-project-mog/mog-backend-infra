@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.Period;
@@ -28,6 +29,7 @@ import static org.junit.Assert.assertThat;
 @SpringBootTest
 @DataJpaTest
 @RunWith(SpringRunner.class)
+@Transactional
 public class PropostaDaoTest {
 
 
