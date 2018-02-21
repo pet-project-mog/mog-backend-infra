@@ -1,4 +1,4 @@
-package br.com.caelum.mog.infra.daos;
+package br.com.caelum.mog.integrations.daos;
 
 import br.com.caelum.mog.domain.models.Cliente;
 import br.com.caelum.mog.domain.models.Curso;
