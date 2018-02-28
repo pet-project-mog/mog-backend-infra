@@ -2,13 +2,13 @@ package br.com.caelum.mog.integrations.daos;
 
 import br.com.caelum.mog.domain.models.Cliente;
 import br.com.caelum.mog.domain.repositories.ClienteRepository;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.transaction.Transactional;
 
@@ -21,9 +21,9 @@ import static org.junit.Assert.assertThat;
 
 @SpringBootTest
 @DataJpaTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @Transactional
-public class ClienteDaoTest {
+class ClienteDaoTest {
 
     @Autowired
     private TestEntityManager manager;
@@ -32,7 +32,7 @@ public class ClienteDaoTest {
     private ClienteRepository clienteRepository;
 
     @Test
-    public void deveSerPossivelRetornarUmClienteAtravesDoId(){
+    void deveSerPossivelRetornarUmClienteAtravesDoId(){
         Long id = manager.persistAndGetId(new Cliente("CDC", "Casa do Código", "11.111.111/1111-11"), Long.class);
 
         assertThat(clienteRepository.findById(id), is(optionalWithValue(pojo(Cliente.class)
@@ -45,7 +45,7 @@ public class ClienteDaoTest {
     }
 
     @Test
-    public void deveSerRetornadoUmOptionalVazioQuandoOIdNaoExistir(){
+    void deveSerRetornadoUmOptionalVazioQuandoOIdNaoExistir(){
         assertThat(clienteRepository.findById(500L), is(emptyOptional()));
     }
 }

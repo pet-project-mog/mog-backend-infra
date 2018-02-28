@@ -4,19 +4,20 @@ import br.com.caelum.mog.domain.models.Cliente;
 import br.com.caelum.mog.domain.models.Curso;
 import br.com.caelum.mog.domain.models.Proposta;
 import br.com.caelum.mog.domain.repositories.PropostaRepository;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.Period;
-import java.util.List;
 
 import static com.spotify.hamcrest.optional.OptionalMatchers.emptyOptional;
 import static com.spotify.hamcrest.optional.OptionalMatchers.optionalWithValue;
@@ -26,9 +27,9 @@ import static org.junit.Assert.assertThat;
 
 @SpringBootTest
 @DataJpaTest
-@RunWith(SpringRunner.class)
 @Transactional
-public class PropostaDaoTest {
+@ExtendWith(SpringExtension.class)
+class PropostaDaoTest {
 
 
     @Autowired
@@ -39,7 +40,7 @@ public class PropostaDaoTest {
 
 
     @Test
-    public void deveSerPossivelRetornarUmaPropostaAtravesDoId(){
+    void deveSerPossivelRetornarUmaPropostaAtravesDoId(){
 
         Curso fj11 = new Curso("FJ 11 - Java e Orientação a Objetos", new BigDecimal("2290"), Duration.ofHours(40));
         Curso fj21 = new Curso("FJ 21 - Java Para Desenvolvimento Web", new BigDecimal("2290"), Duration.ofHours(40));
@@ -63,7 +64,9 @@ public class PropostaDaoTest {
     }
 
 
-    public void deveSerRetornadoUmOptionalVazioQuandoOIdNaoExistir(){
+    @Test
+    void deveSerRetornadoUmOptionalVazioQuandoOIdNaoExistir(){
         assertThat(propostaRepository.findById(500L), is(emptyOptional()));
     }
+
 }
